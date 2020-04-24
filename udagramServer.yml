@@ -68,7 +68,7 @@ Resources:
                 - s3:GetObject
               Resource: 
                 - "arn:aws:s3:::chizims"
-  RootInstanceProfile:
+  EC2InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
       Roles:
