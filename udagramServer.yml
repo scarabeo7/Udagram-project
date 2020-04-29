@@ -96,7 +96,7 @@ Resources:
         Value: Udagram-Bastion   
       SecurityGroupIds:
       - !Ref BastionSecGroup
-      KeyName: # Name of key pair to use 
+      KeyName: Public-key
       SubnetId: 
         Fn::ImportValue: !Sub "${EnvironmentName}-PUB1-SN"
         
@@ -114,7 +114,7 @@ Resources:
           aws s3 cp s3://chizims/chizim.zip 
           unzip -o chizim.zip
       ImageId: ami-0701e7be9b2a77600
-      KeyName: # Name of key pair to use
+      KeyName: Private-key
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t2.micro
