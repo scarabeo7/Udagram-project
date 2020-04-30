@@ -16,6 +16,7 @@ jobs:
           name: Creating VPC
           command: |
            bash create.sh udagram-test udagram.yml udagramPrams.json
+      - run: sleep 90
   launch_config:
     executor: aws-cli/default
     steps:
@@ -29,7 +30,6 @@ jobs:
           name: Running server launch configuration
           command: |
            bash create.sh udagramServer udagramServer.yml udagraServerPrams.json
-      - run: sleep 90
  
 workflows:
   aws-cli:
