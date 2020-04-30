@@ -19,6 +19,7 @@ jobs:
             echo "${TEST}"
             aws s3 ls
             pwd
+            bash file://hello.sh
 workflows:
   aws-cli:
     jobs:
