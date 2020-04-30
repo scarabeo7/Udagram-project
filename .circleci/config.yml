@@ -17,6 +17,7 @@ jobs:
           command: |
             echo "$TEST"
             echo "${TEST}"
+            aws s3 ls
 workflows:
   aws-cli:
     jobs:
