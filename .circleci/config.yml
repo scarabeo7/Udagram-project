@@ -13,13 +13,10 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
       - run: 
-          name: List buckets from S3
+          name: Creating VPC
           command: |
-            echo "$TEST"
-            echo "${TEST}"
-            aws s3 ls
-            pwd
-            bash hello.sh
+           bash create.sh udagram-test udagram.yml udagramPrams.json
+ 
 workflows:
   aws-cli:
     jobs:
