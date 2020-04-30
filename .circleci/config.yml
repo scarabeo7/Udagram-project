@@ -32,12 +32,12 @@ jobs:
           fi
 workflows:
   version: 2
-  one_and_two:
-    jobs:
-      - one
-      - two:
-          requires:
-            - oneversion: 2
+    one_and_two:
+      jobs:
+        - one
+        - two:
+            requires:
+              - one
 
 
 #version: 2.1
