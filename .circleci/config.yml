@@ -29,6 +29,7 @@ jobs:
           name: Running server launch configuration
           command: |
            bash create.sh udagramServer udagramServer.yml udagraServerPrams.json
+      - run: sleep 90
  
 workflows:
   aws-cli:
