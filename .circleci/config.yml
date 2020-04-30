@@ -2,7 +2,7 @@ version: 2
  jobs:
    one: 
      docker: 
-       - image: circleci/ruby:2.4.1 # specifically, a docker image with ruby 2.4.1
+       - image: circleci/ruby:2.4.1
      # Steps are a list of commands to run inside the docker container above.
      steps:
        - checkout 
