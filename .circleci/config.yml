@@ -8,11 +8,14 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup:
-          profile-name: example
+          profile-name: Udagram-Project
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
       - run: echo "Run your code here"
-      
+
 workflows:
   aws-cli:
     jobs:
-      - aws-cli-example:
-          context: aws
+      - aws-cli-example
+          #context: aws
