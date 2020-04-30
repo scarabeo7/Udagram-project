@@ -3,6 +3,7 @@ jobs:
   one:
     docker:
       - image: circleci/ruby:2.4.1
+    description: Saying hello  
     steps:
       - checkout
       - run: echo "A first hello"
@@ -17,6 +18,7 @@ jobs:
   two:
     docker:
       - image: circleci/ruby:2.4.1
+    description: Saying another hello  
     steps:
       - checkout
       - run: echo "A more familiar hi"  
