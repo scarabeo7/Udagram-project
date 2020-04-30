@@ -15,8 +15,7 @@ jobs:
       - run: 
           name: List buckets from S3
           command: |
-            aws ls s3
-
+            aws s3 ls
 workflows:
   aws-cli:
     jobs:
