@@ -6,7 +6,10 @@ jobs:
     description: Saying hello  
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: 
+          name: Saying hello
+          command: | 
+            echo "A first hello"
       - run: mkdir -p my_workspace
       - run: echo "Trying out workspaces" > my_workspace/echo-output
       - persist_to_workspace:
