@@ -3,7 +3,7 @@ orbs:
   aws-cli: circleci/aws-cli@1.0.0
 
 jobs:
-  aws-cli-example:
+  create_vpc:
     executor: aws-cli/default
     steps:
       - checkout
@@ -16,9 +16,23 @@ jobs:
           name: Creating VPC
           command: |
            bash create.sh udagram-test udagram.yml udagramPrams.json
+  launch_config:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: Udagram-Project
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
+      - run: 
+          name: Running server launch configuration
+          command: |
+           bash create.sh udagramServer udagramServer.yml udagraServerPrams.json
  
 workflows:
   aws-cli:
     jobs:
-      - aws-cli-example
+      - create_vpc
+      - launch_config
           #context: aws
