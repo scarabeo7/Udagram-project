@@ -12,7 +12,10 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
-      - run: echo "Run your code here"
+      - run: 
+          name: List buckets from S3
+          command: |
+            aws ls s3
 
 workflows:
   aws-cli:
