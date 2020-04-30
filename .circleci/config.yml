@@ -16,7 +16,6 @@ jobs:
           name: Creating VPC
           command: |
            bash create.sh udagram-test udagram.yml udagramPrams.json
-      - run: sleep 300
   launch_config:
     executor: aws-cli/default
     steps:
@@ -26,6 +25,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
+      - run: sleep 300
       - run: 
           name: Running server launch configuration
           command: |
