@@ -18,6 +18,7 @@ jobs:
             echo "$TEST"
             echo "${TEST}"
             aws s3 ls
+            echo "${pwd}"
 workflows:
   aws-cli:
     jobs:
