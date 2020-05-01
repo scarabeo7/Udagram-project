@@ -2,38 +2,62 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@1.0.0
 
+commands:
+  aws-setup:
+    description: Configures AWS profile for CircleCI user
+    steps:
+      - aws-cli/setup:
+          profile-name: Udagram-Project
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
+
+  deploy-vpc-stack:
+    description: Runs script to create VPC infra
+    steps:
+      - run: 
+          name: Creating VPC
+          command: |
+            bash create.sh udagram-test udagram.yml udagramPrams.json
+
+  launch-ec2-instances:
+    description: 
+    steps:
+      - run: 
+          name: Running server launch configuration
+          command: |
+            bash create.sh udagramServer udagramServer.yml udagraServerPrams.json
+
 jobs:
   create_vpc:
     executor: aws-cli/default
     steps:
       - checkout
-      - aws-cli/setup:
-          profile-name: Udagram-Project
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_DEFAULT_REGION
-      - run: 
-          name: Creating VPC
-          command: |
-           bash create.sh udagram-test udagram.yml udagramPrams.json
+      - aws-setup
+      - deploy-vpc-stack
+      
   launch_config:
     executor: aws-cli/default
     steps:
       - checkout
-      - aws-cli/setup:
-          profile-name: Udagram-Project
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_DEFAULT_REGION
+      - aws-setup
       - run: sleep 300
-      - run: 
-          name: Running server launch configuration
-          command: |
-           bash create.sh udagramServer udagramServer.yml udagraServerPrams.json
+      - launch-ec2-instances
+
+  deploy-message:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - run: echo "Deploying infrastructure as code..."
  
 workflows:
   aws-cli:
     jobs:
-      - create_vpc
-      - launch_config
-          #context: aws
+      - deploy-message
+      - create_vpc:
+          type: approval
+          requires:
+            - deploy-message
+      - launch_config:
+          requires:
+            - create_vpc
