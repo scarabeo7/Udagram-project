@@ -21,7 +21,7 @@ commands:
             bash create.sh udagram-test udagram.yml udagramPrams.json
 
   launch-ec2-instances:
-    description: 
+    description: Runs script for launch configuration
     steps:
       - run: 
           name: Running server launch configuration
