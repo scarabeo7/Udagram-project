@@ -41,7 +41,6 @@ jobs:
     steps:
       - checkout
       - aws-setup
-      - run: sleep 300
       - launch-ec2-instances
 
   deploy-message:
